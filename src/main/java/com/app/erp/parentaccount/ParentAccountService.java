@@ -1,4 +1,4 @@
-package com.app.erp.parentaccount;
+package com.app.erp.parentAccount;
 
 import java.util.List;
 

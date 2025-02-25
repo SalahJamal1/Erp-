@@ -1,4 +1,4 @@
-package com.app.erp.parentaccount;
+package com.app.erp.parentAccount;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

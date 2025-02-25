@@ -1,4 +1,4 @@
-package com.app.erp.basicaccount;
+package com.app.erp.basicAccount;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

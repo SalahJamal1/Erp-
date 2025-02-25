@@ -1,6 +1,5 @@
-package com.app.erp.basicaccount;
+package com.app.erp.basicAccount;
 
-import com.app.erp.subaccount.SubAccount;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
+import com.app.erp.subAccount.SubAccount;
 
 @Data
 @Builder

@@ -1,4 +1,4 @@
-package com.app.erp.account;
+package com.app.erp.accounts;
 
 import java.util.List;
 

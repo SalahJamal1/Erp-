@@ -1,4 +1,4 @@
-package com.app.erp.subaccount;
+package com.app.erp.subAccount;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

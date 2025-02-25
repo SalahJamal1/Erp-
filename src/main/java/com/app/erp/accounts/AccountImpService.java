@@ -1,4 +1,4 @@
-package com.app.erp.account;
+package com.app.erp.accounts;
 
 import com.app.erp.exception.AppError;
 import lombok.RequiredArgsConstructor;

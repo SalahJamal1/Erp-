@@ -1,4 +1,4 @@
-package com.app.erp.subaccount;
+package com.app.erp.subAccount;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

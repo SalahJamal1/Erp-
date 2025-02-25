@@ -1,4 +1,4 @@
-package com.app.erp.subaccount;
+package com.app.erp.subAccount;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

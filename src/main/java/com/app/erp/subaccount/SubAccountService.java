@@ -1,8 +1,8 @@
-package com.app.erp.subaccount;
-
-import com.app.erp.subaccount.SubAccount;
+package com.app.erp.subAccount;
 
 import java.util.List;
+
+import com.app.erp.subAccount.SubAccount;
 
 public interface SubAccountService {
     List<SubAccount> findAll();
