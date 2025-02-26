@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,24 +26,20 @@ public class AuthService {
 
     public AuthResponse register(HttpServletResponse response, AuthRegister register) {
 
-        try {
 
-            User user = User.builder()
-                    .email(register.getEmail())
-                    .password(passwordEncoder.encode(register.getPassword()))
-                    .firstName(register.getFirstName())
-                    .lastName(register.getLastName())
-                    .role(Role.ROLE_USER)
-                    .build();
+        User user = User.builder()
+                .email(register.getEmail())
+                .password(passwordEncoder.encode(register.getPassword()))
+                .firstName(register.getFirstName())
+                .lastName(register.getLastName())
+                .role(Role.ROLE_USER)
+                .build();
+        System.out.println(user);
+        userRepository.save(user);
+        String jwt = jwtService.generateToken(user);
+        SetCookie(response, jwt);
+        return AuthResponse.builder().token(jwt).user(user).build();
 
-            userRepository.save(user);
-            String jwt = jwtService.generateToken(user);
-            SetCookie(response, jwt);
-            return AuthResponse.builder().token(jwt).user(user).build();
-        } catch (Exception err) {
-            System.out.println(err.getMessage());
-            throw new AppError(err.getMessage());
-        }
     }
 
     public AuthResponse login(HttpServletResponse response, AuthLogin login) {
@@ -53,11 +50,12 @@ public class AuthService {
                             login.getPassword()
                     )
             );
-            User user = userRepository.findByEmail(login.getEmail()).orElseThrow();
+            User user = userRepository.findByEmail(login.getEmail())
+                    .orElseThrow(() -> new AppError("user is not exit"));
             String jwt = jwtService.generateToken(user);
             SetCookie(response, jwt);
             return AuthResponse.builder().token(jwt).user(user).build();
-        } catch (Exception err) {
+        } catch (AuthenticationException err) {
             System.out.println(err.getMessage());
             throw new AppError("email or password is wrong");
         }

@@ -24,11 +24,9 @@ public class SubAccount {
     @NotNull
     @Column(unique = true)
     private Long accountNumber;
-
-    private final Integer level = 4;
+    private Integer level;
     private Long openingBalance;
     private Long debit;
     private Long credit;
     private Long endingBalance;
-
 }

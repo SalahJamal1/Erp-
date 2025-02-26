@@ -1,5 +1,6 @@
 package com.app.erp.accounts;
 
+import com.app.erp.mainAccount.MainAccount;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,14 +11,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import com.app.erp.parentAccount.ParentAccount;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "account", uniqueConstraints = @UniqueConstraint(columnNames = "accountNumber"))
+@Table(name = "chart_account", uniqueConstraints = @UniqueConstraint(columnNames = "accountNumber"))
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +27,10 @@ public class Account {
     @NotNull
     @Column(unique = true)
     private Long accountNumber;
-    private final Integer level = 1;
+    private Integer level;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
-    private List<ParentAccount> accounts;
+    private List<MainAccount> mainAccounts;
 
 }

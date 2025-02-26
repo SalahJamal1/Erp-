@@ -1,5 +1,6 @@
 package com.app.erp.config;
 
+import com.app.erp.exception.AppError;
 import com.app.erp.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +25,8 @@ public class AppConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByEmail(username).orElseThrow();
+        return username -> userRepository.findByEmail(username)
+                .orElseThrow(() -> new AppError("user is not exist"));
     }
 
     @Bean
@@ -36,7 +38,8 @@ public class AppConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
+            throws Exception {
         return configuration.getAuthenticationManager();
     }
 

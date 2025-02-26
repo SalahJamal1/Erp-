@@ -1,5 +1,6 @@
-package com.app.erp.basicAccount;
+package com.app.erp.mainAccount;
 
+import com.app.erp.parentAccount.ParentAccount;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,15 +11,13 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import com.app.erp.subAccount.SubAccount;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "basic_account", uniqueConstraints = @UniqueConstraint(columnNames = "accountNumber"))
-public class BasicAccount {
+@Table(name = "main_account", uniqueConstraints = @UniqueConstraint(columnNames = "accountNumber"))
+public class MainAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,9 +27,9 @@ public class BasicAccount {
     @NotNull
     @Column(unique = true)
     private Long accountNumber;
-    private final Integer level = 3;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "basic_account_id")
-    private List<SubAccount> subAccounts;
+    private Integer level;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "main_id")
+    private List<ParentAccount> parentAccounts;
 }
