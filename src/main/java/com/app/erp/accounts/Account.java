@@ -1,6 +1,5 @@
 package com.app.erp.accounts;
 
-import com.app.erp.mainAccount.MainAccount;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,9 +27,12 @@ public class Account {
     @Column(unique = true)
     private Long accountNumber;
     private Integer level;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
-    private List<MainAccount> mainAccounts;
+    private List<Account> subAccounts;
+    private Long openingBalance;
+    private Long debit;
+    private Long credit;
+    private Long endingBalance;
 
 }
