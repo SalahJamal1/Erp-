@@ -17,6 +17,7 @@ public class AccountController {
         return accounts;
     }
 
+    
     @GetMapping("/{id}")
     public Account account(@PathVariable Long id) {
         return service.findById(id);
