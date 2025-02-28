@@ -51,10 +51,11 @@ public class AppConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTION"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedOrigins(List.of("http://localhost:3000"));
         configuration.setAllowCredentials(true);
-        configuration.setExposedHeaders(List.of("Sit-Cookie"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setExposedHeaders(List.of("Set-Cookie"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

@@ -13,10 +13,11 @@ public class AccountController {
 
     @GetMapping
     public List<Account> accountList() {
-        return service.findAll();
+        List<Account> accounts = service.findAll().stream().filter(acc -> acc.getLevel() == 1).toList();
+        return accounts;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Account account(@PathVariable Long id) {
         return service.findById(id);
     }

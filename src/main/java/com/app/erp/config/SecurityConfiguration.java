@@ -24,7 +24,7 @@ public class SecurityConfiguration {
         return httpSecurity.cors(c -> c.configurationSource(corsConfigurationSource))
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/v1/auth/**", "/api/v1/accounts").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)

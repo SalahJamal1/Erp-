@@ -34,5 +34,6 @@ public class Account {
     private Long debit;
     private Long credit;
     private Long endingBalance;
-
+    @Column(name = "account_id")
+    private Long accountId;
 }
