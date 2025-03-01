@@ -8,6 +8,7 @@ target/
 .mvn/
 .idea/
 .vscode/
+target/
 
 node_modules/
 ### STS ###
