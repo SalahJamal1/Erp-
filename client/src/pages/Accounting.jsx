@@ -1,7 +1,6 @@
 import Chart_Accounts from "../components/Chart_Accounts";
-
-function Home() {
+function Accounting() {
   return <Chart_Accounts />;
 }
 
-export default Home;
+export default Accounting;

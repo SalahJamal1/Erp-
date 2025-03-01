@@ -9,3 +9,16 @@ export async function getAccounts() {
   const res = await api.get("accounts");
   return res.data;
 }
+export async function getAcc() {
+  const res = await api.get("accounts/acc");
+  return res.data;
+}
+export async function getAccountById(id) {
+  const res = await api.get(`accounts/${id}`);
+  return res.data;
+}
+export async function getAccountByAccountName(accName) {
+  console.log(accName);
+  const res = await api.get(`accounts/acc/${accName}`);
+  return res.data;
+}

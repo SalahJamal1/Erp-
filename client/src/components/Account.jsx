@@ -2,7 +2,13 @@ import { FaCircleMinus } from "react-icons/fa6";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { IoIosAddCircle } from "react-icons/io";
 
-export function Account({ account, showForm, setShowForm }) {
+export function Account({
+  account,
+  showForm,
+  setShowForm,
+  handelOption,
+  options,
+}) {
   return (
     <li
       className={`flex items-center gap-2 mb-6 py-1 ${
@@ -43,7 +49,7 @@ export function Account({ account, showForm, setShowForm }) {
         <span>{account?.accountName}</span>
       </h2>
 
-      <button>
+      <button onClick={() => handelOption(options ? null : account)}>
         <HiOutlineDotsVertical className="text-2xl " />
       </button>
     </li>
