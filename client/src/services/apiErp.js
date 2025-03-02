@@ -9,6 +9,15 @@ export async function getAccounts() {
   const res = await api.get("accounts");
   return res.data;
 }
+
+export async function createAccount(data) {
+  const res = await api.post("accounts", data);
+  return res;
+}
+export async function updateAccount(id, data) {
+  const res = await api.patch(`accounts/${id}`, data);
+  return res;
+}
 export async function getAccountById(id) {
   const res = await api.get(`accounts/${id}`);
   return res.data;

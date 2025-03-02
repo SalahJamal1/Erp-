@@ -2,14 +2,22 @@ import { FaCircleMinus } from "react-icons/fa6";
 import { IoIosAddCircle } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
 import Options from "./Options";
-export function Account({
-  account,
-  showForm,
-  setShowForm,
-  handelOption,
-  options,
-  setOptions,
-}) {
+import { useDispatch, useSelector } from "react-redux";
+import { setOption } from "../store/accountSlice";
+import { useEffect, useState } from "react";
+export function Account({ account, showForm, setShowForm }) {
+  const { options } = useSelector((store) => store.chartAccount);
+  const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    if (options != null) {
+      const timer = setTimeout(() => {
+        setShow(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [options, show]);
+
   return (
     <li
       className={`flex items-center gap-2 mb-6 py-1 justify-between relative ${
@@ -55,15 +63,15 @@ export function Account({
       </div>
 
       <button
-        onClick={() => handelOption(account)}
+        onClick={() => {
+          dispatch(setOption(account));
+          setShow(true);
+        }}
         className="absolute top-2 right-[2%]"
       >
-        {/* <HiOutlineDotsVertical className="text-2xl " /> */}
         <BsThreeDots className="text-2xl " />
       </button>
-      {options?.id === account?.id && (
-        <Options setOptions={setOptions} options={options} />
-      )}
+      {options?.id === account?.id && <Options show={show} />}
     </li>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Account } from "./Account";
-function Accounts({ account, handelOption, options, setOptions }) {
+function Accounts({ account }) {
   const [showForm, setShowForm] = useState(true);
 
   return (
@@ -9,20 +9,11 @@ function Accounts({ account, handelOption, options, setOptions }) {
         account={account}
         showForm={showForm}
         setShowForm={setShowForm}
-        handelOption={handelOption}
-        options={options}
-        setOptions={setOptions}
       />
       {showForm && (
         <ul>
           {account.subAccounts.map((account) => (
-            <Accounts
-              key={account.id}
-              account={account}
-              handelOption={handelOption}
-              options={options}
-              setOptions={setOptions}
-            />
+            <Accounts key={account.id} account={account} />
           ))}
         </ul>
       )}

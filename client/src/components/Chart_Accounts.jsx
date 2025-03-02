@@ -1,32 +1,18 @@
-import { useEffect, useState } from "react";
-import { getAccounts } from "../services/apiErp";
-
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import Accounts from "./Accounts";
+import useAccounts from "../hooks/useAccounts";
 
 function Chart_Accounts() {
-  const [accounts, setAccounts] = useState([]);
-  const [options, setOptions] = useState(null);
-  async function fetchAccounts() {
-    const res = await getAccounts();
-    setAccounts(res);
-  }
-  const account = [...accounts.filter((acc) => acc.level === 1)];
+  const { accounts } = useSelector((store) => store.chartAccount);
+  const { fetchAccounts } = useAccounts();
+
   useEffect(() => {
     fetchAccounts();
-  }, []);
-  useEffect(() => {
-    const exit = (e) => {
-      if (e.code === "Escape") setOptions(false);
-    };
+  }, [fetchAccounts]);
 
-    document.querySelector("body").addEventListener("keydown", exit);
-    return () =>
-      document.querySelector("body").removeEventListener("keydown", exit);
-  }, []);
+  const account = [...accounts.filter((acc) => acc.level === 1)];
 
-  const handelOption = (value) => {
-    setOptions((o) => (o?.id === value?.id ? null : value));
-  };
   return (
     <>
       <div className="text-center">
@@ -35,13 +21,7 @@ function Chart_Accounts() {
         </h1>
         <ul className="space-y-6">
           {account.map((account) => (
-            <Accounts
-              handelOption={handelOption}
-              options={options}
-              key={account.id}
-              account={account}
-              setOptions={setOptions}
-            />
+            <Accounts key={account.id} account={account} />
           ))}
         </ul>
       </div>
