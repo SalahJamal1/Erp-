@@ -6,6 +6,9 @@ function SideBar() {
       <li>
         <Link to="/">Home</Link>
       </li>
+      <li>
+        <Link to="/account">accounting</Link>
+      </li>
     </ul>
   );
 }

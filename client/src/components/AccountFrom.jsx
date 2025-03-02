@@ -1,68 +1,28 @@
-import { useParams } from "react-router-dom";
-import {
-  getAcc,
-  getAccountByAccountName,
-  getAccountById,
-} from "../services/apiErp";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function AccountFrom() {
-  const [account, setAccount] = useState({});
-  const [accounts, setAccounts] = useState([]);
-  const [parentAccounts, setparentAccounts] = useState({});
-  const [select, setSelect] = useState("");
-
-  const id = useParams();
-  useEffect(() => {
-    async function getAccount() {
-      if (id?.id) {
-        const res = await getAccountById(+id.id);
-        setAccount(res);
-      }
-      const data = await getAcc();
-      setAccounts(data);
-    }
-    getAccount();
-  }, [id?.id]);
+  const [select, setSelect] = useState(null);
 
   const [formData, setFormData] = useState({
     accountName: "",
     accountNumber: "",
     openingBalance: "",
     level: "",
+    accountId: select,
   });
-  useEffect(() => {
-    setFormData({
-      accountName: account.accountName || "",
-      accountNumber: account.accountNumber || "",
-      openingBalance: account.openingBalance || "",
-      level: account.level || "",
-    });
-  }, [account]);
-
-  useEffect(() => {
-    async function getParent() {
-      if (select) {
-        const data = await getAccountByAccountName(`${select} `);
-        setparentAccounts(data);
-      }
-    }
-    getParent();
-  }, [select]);
-  console.log(parentAccounts);
   function handelChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
   return (
     <div className=" text-white flex items-center justify-center">
       <form className="flex items-center justify-center flex-col w-fit bg-blue-700 px-8 py-12">
-        <div className="flex  gap-12 mb-8">
+        <div className="grid grid-cols-2  gap-12 mb-8">
           <div className="flex flex-col items-center gap-4">
             <label className="text-xl font-semibold" htmlFor="">
               Account Number
             </label>
             <input
-              className="border-2 rounded-full py-2 text-white text-center"
+              className="border-2 rounded-full py-2 text-white text-center w-[25rem]"
               type="text"
               value={formData.accountNumber}
               name="accountNumber"
@@ -75,7 +35,7 @@ function AccountFrom() {
             </label>
             <input
               type="text"
-              className="border-2 rounded-full py-2 text-center"
+              className="border-2 rounded-full py-2 text-center w-[25rem]"
               name="accountName"
               value={formData.accountName}
               onChange={handelChange}
@@ -87,7 +47,7 @@ function AccountFrom() {
             </label>
             <input
               type="text"
-              className="border-2 rounded-full py-2 text-center"
+              className="border-2 rounded-full py-2 text-center w-[25rem]"
               value={formData.openingBalance ? formData.openingBalance : 0}
               onChange={handelChange}
               name="openingBalance"
@@ -100,11 +60,11 @@ function AccountFrom() {
             <select
               value={select}
               onChange={(e) => setSelect(e.target.value)}
-              className="border-2  px-4 py-2 text-center w-36 rounded-full"
+              className="border-2  px-4 py-2 text-center rounded-full w-[25rem]"
             >
-              <option value="">select account</option>
-              {accounts.map((acc) => (
-                <option key={acc.id} value={acc.accountName}>
+              <option value={null}>select account</option>
+              {accounts?.map((acc) => (
+                <option key={acc.id} value={acc.id}>
                   {acc.accountName}
                 </option>
               ))}

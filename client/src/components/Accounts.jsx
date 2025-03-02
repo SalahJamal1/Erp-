@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Account } from "./Account";
-function Accounts({ account, handelOption, options }) {
+function Accounts({ account, handelOption, options, setOptions }) {
   const [showForm, setShowForm] = useState(true);
 
   return (
@@ -11,6 +11,7 @@ function Accounts({ account, handelOption, options }) {
         setShowForm={setShowForm}
         handelOption={handelOption}
         options={options}
+        setOptions={setOptions}
       />
       {showForm && (
         <ul>
@@ -20,6 +21,7 @@ function Accounts({ account, handelOption, options }) {
               account={account}
               handelOption={handelOption}
               options={options}
+              setOptions={setOptions}
             />
           ))}
         </ul>

@@ -3,11 +3,13 @@ import AppLayout from "./ui/AppLayout";
 import Accounting from "./pages/Accounting";
 import AccountFrom from "./components/AccountFrom";
 import Chart_Accounts from "./components/Chart_Accounts";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
+      { path: "/", element: <Home /> },
       {
         path: "/account",
         element: <Chart_Accounts />,
