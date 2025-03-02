@@ -14,12 +14,18 @@ function Options({ show }) {
   if (show)
     return (
       <div className="absolute top-9  right-[2%] z-10 transition-all duration-150">
-        <div className="flex flex-col bg-slate-100 shadow-2xl   w-[9rem] h-[9rem] px-3 py-4  capitalize font-semibold rounded-lg text-[#034fb1] space-y-5 relative cursor-pointer">
+        <div
+          className={`flex flex-col bg-slate-100 shadow-2xl   w-[9rem]  px-3 py-4 ${
+            options.level < 5 ? "h-[9rem]" : "h-[7rem]"
+          }  capitalize font-semibold rounded-lg text-[#034fb1] space-y-5 relative cursor-pointer`}
+        >
           <FaCaretUp className="absolute text-slate-100 text-4xl top-[-13%] right-[-4%]  z-0" />
-          <Link to="/account/addAccount" className="flex items-center gap-1">
-            <MdAddBox className="text-xl" />
-            add
-          </Link>
+          {options.level < 5 && (
+            <Link to="/account/addAccount" className="flex items-center gap-1">
+              <MdAddBox className="text-xl" />
+              add
+            </Link>
+          )}
           <Link
             to={`/account/${options.id}`}
             className="flex items-center gap-1"

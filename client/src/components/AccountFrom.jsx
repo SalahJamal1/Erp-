@@ -48,9 +48,11 @@ function AccountFrom() {
       navigate(-1);
     }
   }
+  console.log(formData);
 
   function handelChange(e) {
     const { name, value } = e.target;
+    console.log(name, value);
     setFormData({
       ...formData,
       [name]: value,
@@ -64,7 +66,7 @@ function AccountFrom() {
   }
   useEffect(() => {
     if (options) {
-      setFormData((prev) => ({ ...prev, accountId: options.id }));
+      setFormData((prev) => ({ ...prev, accountId: options?.id }));
     }
   }, [options]);
 
@@ -129,11 +131,13 @@ function AccountFrom() {
               required
             >
               <option value="">
-                {options ? options.accountName : "Select account"}
+                {options
+                  ? `${options.accountNumber} ${options.accountName}`
+                  : "Select account"}
               </option>
               {accounts?.map((acc) => (
                 <option key={acc.id} value={acc.id}>
-                  {acc.accountName}
+                  {acc.accountNumber} {acc.accountName}
                 </option>
               ))}
             </select>

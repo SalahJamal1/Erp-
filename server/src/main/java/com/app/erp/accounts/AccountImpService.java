@@ -33,4 +33,9 @@ public class AccountImpService implements AccountService {
     public void delete(Account entity) {
         repository.delete(entity);
     }
+
+    @Override
+    public Account findByAccountNumber(Long accountNumber) {
+        return repository.findByAccountNumber(accountNumber);
+    }
 }

@@ -20,7 +20,7 @@ function Chart_Accounts() {
           Chart of Accounts
         </h1>
         <ul className="space-y-6">
-          {account.map((account) => (
+          {accounts.map((account) => (
             <Accounts key={account.id} account={account} />
           ))}
         </ul>

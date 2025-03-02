@@ -13,7 +13,7 @@ export function Account({ account, showForm, setShowForm }) {
     if (options != null) {
       const timer = setTimeout(() => {
         setShow(false);
-      }, 5000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [options, show]);

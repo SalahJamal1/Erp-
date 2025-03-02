@@ -10,4 +10,7 @@ public interface AccountService {
     Account save(Account entity);
 
     void delete(Account entity);
+
+    Account findByAccountNumber(Long accountNumber);
+
 }
