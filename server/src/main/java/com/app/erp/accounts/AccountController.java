@@ -38,7 +38,6 @@ public class AccountController {
         Account account = service.findById(Id);
         account.setAccountName(entity.getAccountName());
         account.setAccountNumber(entity.getAccountNumber());
-        account.setSubAccounts(entity.getSubAccounts());
         account.setLevel(entity.getLevel());
         account.setOpeningBalance(entity.getOpeningBalance());
         account.setAccountId(entity.getAccountId());

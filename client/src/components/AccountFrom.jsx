@@ -4,7 +4,7 @@ import useAccounts from "../hooks/useAccounts";
 import { createAccount, updateAccount } from "../services/apiErp";
 import { setOption } from "../store/accountSlice";
 import { useNavigate, useParams } from "react-router-dom";
-
+import Select from "react-select";
 function AccountFrom() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,7 +48,6 @@ function AccountFrom() {
       navigate(-1);
     }
   }
-  console.log(formData);
 
   function handelChange(e) {
     const { name, value } = e.target;
@@ -69,6 +68,43 @@ function AccountFrom() {
       setFormData((prev) => ({ ...prev, accountId: options?.id }));
     }
   }, [options]);
+
+  const accountOptions = accounts.map((acc) => ({
+    value: acc.id,
+    label: `${acc.accountNumber} ${acc.accountName}`,
+  }));
+
+  const customStyles = {
+    control: (base) => ({
+      ...base,
+      borderRadius: "20px",
+      border: "2px solid",
+      borderColor: "#034fb1",
+      padding: "5px 10px",
+      width: "25rem",
+      backgroundColor: "#034fb1",
+      color: "white !important",
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? "#034fb1"
+        : state.isFocused
+        ? "#034fb1"
+        : "white",
+      color: state.isSelected ? "white" : state.isFocused ? "white" : "#034fb1",
+      padding: "10px 20px",
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: "10px",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "white !important",
+    }),
+  };
 
   return (
     <div className=" text-white flex items-center justify-center">
@@ -120,15 +156,20 @@ function AccountFrom() {
             />
           </div>
           <div className="flex flex-col items-center gap-4">
-            <label className="text-xl font-semibold" htmlFor="">
+            <label className="text-xl font-semibold capitalize" htmlFor="">
               under ledger
             </label>
-            <select
-              value={formData.accountId}
-              onChange={handelChange}
-              name="accountId"
-              className="border-2  px-4 py-2 text-center rounded-full w-[25rem]"
+            <Select
+              value={accountOptions.find(
+                (opt) => opt.value === formData.accountId
+              )}
+              onChange={(selectedOption) =>
+                setFormData({ ...formData, accountId: selectedOption.value })
+              }
+              options={accountOptions}
+              placeholder="Select account"
               required
+              styles={customStyles}
             >
               <option value="">
                 {options
@@ -140,7 +181,7 @@ function AccountFrom() {
                   {acc.accountNumber} {acc.accountName}
                 </option>
               ))}
-            </select>
+            </Select>
           </div>
         </div>
         <button className="border-2 rounded-full py-6 px-4 cursor-pointer">
