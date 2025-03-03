@@ -47,6 +47,7 @@ export function Account({ account, showForm, setShowForm }) {
          `}
     >
       <div className="flex items-center gap-2">
+        
         {account?.subAccounts?.length > 0 && (
           <button onClick={() => setShowForm((s) => !s)}>
             {showForm ? (

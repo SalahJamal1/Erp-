@@ -28,3 +28,9 @@ export async function getAccountByAccountNumber(accountNumber) {
   );
   return res.data;
 }
+export async function createJouranl(data) {
+  console.log(data);
+  const res = await api.post(`/accounts/journal/journal-entry`, data);
+  console.log(res);
+  return res.data;
+}

@@ -33,7 +33,6 @@ public class JournalEntryController {
         BigDecimal totalDebit=entity.getJournalEntryDetails().stream()
                 .map(JournalEntryDetail::getDebit)
                 .reduce(BigDecimal.ZERO,BigDecimal::add);
-        System.out.println(totalDebit);
         BigDecimal totalCredit=entity.getJournalEntryDetails().stream().map(JournalEntryDetail::getCredit)
                 .reduce(BigDecimal.ZERO,BigDecimal::add);
         if(!totalDebit.equals(totalCredit)){

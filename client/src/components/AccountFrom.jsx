@@ -78,40 +78,23 @@ function AccountFrom() {
     control: (base) => ({
       ...base,
       borderRadius: "20px",
-      border: "2px solid",
+      border: "2px solid #034fb1",
       borderColor: "#034fb1",
       padding: "5px 10px",
       width: "25rem",
-      backgroundColor: "#034fb1",
-      color: "white !important",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected
-        ? "#034fb1"
-        : state.isFocused
-        ? "#034fb1"
-        : "white",
-      color: state.isSelected ? "white" : state.isFocused ? "white" : "#034fb1",
-      padding: "10px 20px",
-    }),
-    menu: (provided) => ({
-      ...provided,
-      borderRadius: "10px",
-      boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      color: "white !important",
+      backgroundColor: "",
+      color: "",
     }),
   };
-
   return (
-    <div className=" text-white flex items-center justify-center">
+    <div className="text-white flex flex-col items-center justify-center space-y-5">
+      <h1 className="border-y-3 border-[#034fb1] text-2xl py-1 text-[#034fb1] font-semibold inline-block">
+        {id ? "Update" : "Add"} Account
+      </h1>
       <form
         method="POST"
         onSubmit={onSubmit}
-        className="flex items-center justify-center flex-col w-fit bg-[#034fb1] px-8 py-12"
+        className="flex items-center justify-center border-[#034fb1] text-[#034fb1] border-2 flex-col w-fit  px-8 py-12"
       >
         <div className="grid grid-cols-2  gap-12 mb-8">
           <div className="flex flex-col items-center gap-4">
@@ -119,7 +102,7 @@ function AccountFrom() {
               Account Number
             </label>
             <input
-              className="border-2 rounded-full py-2 text-white text-center w-[25rem]"
+              className="border-2 rounded-full py-2  text-center w-[25rem]"
               type="text"
               value={formData.accountNumber}
               name="accountNumber"
@@ -173,7 +156,7 @@ function AccountFrom() {
             />
           </div>
         </div>
-        <button className="border-2 rounded-full py-6 px-4 cursor-pointer">
+        <button className="border-2 rounded-full py-4 px-4 cursor-pointer">
           {id ? "update" : "Add"} Account
         </button>
       </form>
