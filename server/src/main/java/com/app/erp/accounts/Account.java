@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -30,10 +31,8 @@ public class Account {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
     private List<Account> subAccounts;
-    private Long openingBalance;
-    private Long debit;
-    private Long credit;
-    private Long endingBalance;
+    private BigDecimal openingBalance;
+    private BigDecimal endingBalance;
     @Column(name = "account_id")
     private Long accountId;
 }
