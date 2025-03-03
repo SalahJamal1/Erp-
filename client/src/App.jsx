@@ -1,9 +1,9 @@
 import { createBrowserRouter, Route, RouterProvider } from "react-router-dom";
 import AppLayout from "./ui/AppLayout";
-import Accounting from "./pages/Accounting";
 import AccountFrom from "./components/AccountFrom";
 import Chart_Accounts from "./components/Chart_Accounts";
 import Home from "./pages/Home";
+import Journal from "./components/Journal";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "account/:id",
         element: <AccountFrom />,
+      },
+      {
+        path: "account/journal",
+        element: <Journal />,
       },
     ],
   },

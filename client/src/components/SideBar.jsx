@@ -9,6 +9,9 @@ function SideBar() {
       <li>
         <Link to="/account">accounting</Link>
       </li>
+      <li>
+        <Link to="/account/journal">Journal Entry</Link>
+      </li>
     </ul>
   );
 }

@@ -170,18 +170,7 @@ function AccountFrom() {
               placeholder="Select account"
               required
               styles={customStyles}
-            >
-              <option value="">
-                {options
-                  ? `${options.accountNumber} ${options.accountName}`
-                  : "Select account"}
-              </option>
-              {accounts?.map((acc) => (
-                <option key={acc.id} value={acc.id}>
-                  {acc.accountNumber} {acc.accountName}
-                </option>
-              ))}
-            </Select>
+            />
           </div>
         </div>
         <button className="border-2 rounded-full py-6 px-4 cursor-pointer">
