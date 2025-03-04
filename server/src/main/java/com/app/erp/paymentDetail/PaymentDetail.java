@@ -1,4 +1,4 @@
-package com.app.erp.journalEntryDetails;
+package com.app.erp.paymentDetail;
 
 import com.app.erp.accounts.Account;
 import jakarta.persistence.*;
@@ -14,17 +14,14 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "journal_entry_details")
-public class JournalEntryDetail {
+@Table(name = "payment_detail")
+public class PaymentDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
+    private BigDecimal debit = BigDecimal.ZERO;
+    private BigDecimal credit = BigDecimal.ZERO;
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
-    private BigDecimal debit=BigDecimal.ZERO;
-    private BigDecimal credit=BigDecimal.ZERO;
-
 }

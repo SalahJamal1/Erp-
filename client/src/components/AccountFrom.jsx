@@ -51,7 +51,6 @@ function AccountFrom() {
 
   function handelChange(e) {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData({
       ...formData,
       [name]: value,
@@ -69,10 +68,12 @@ function AccountFrom() {
     }
   }, [options]);
 
-  const accountOptions = accounts.map((acc) => ({
-    value: acc.id,
-    label: `${acc.accountNumber} ${acc.accountName}`,
-  }));
+  const accountOptions = accounts
+    .filter((el) => el.level < 5)
+    .map((acc) => ({
+      value: acc.id,
+      label: `${acc.accountNumber} ${acc.accountName}`,
+    }));
 
   const customStyles = {
     control: (base) => ({

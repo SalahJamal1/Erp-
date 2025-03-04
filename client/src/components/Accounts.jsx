@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Account } from "./Account";
 function Accounts({ account }) {
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
 
   return (
     <div>

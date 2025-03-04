@@ -1,6 +1,5 @@
 package com.app.erp.journalEntryDetails;
 
-import com.app.erp.journalEntryDetails.JournalEntryDetail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

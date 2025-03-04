@@ -1,4 +1,4 @@
-package com.app.erp.journalEntryDetails;
+package com.app.erp.payment;
 
 import com.app.erp.exception.AppError;
 import lombok.RequiredArgsConstructor;
@@ -9,28 +9,28 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class JournalEntryDetailImpService implements JournalEntryDetailService {
-    private final JournalEntryDetailRepository repository;
+public class PaymentImpService implements PaymentService {
+    private final PaymentRepository repository;
 
     @Override
-    public List<JournalEntryDetail> findAll() {
+    public List<Payment> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public JournalEntryDetail findById(Long id) {
+    public Payment findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new AppError("we can not found it"));
     }
 
     @Override
     @Transactional
-    public JournalEntryDetail save(JournalEntryDetail entity) {
+    public Payment save(Payment entity) {
         return repository.save(entity);
     }
 
     @Override
     @Transactional
-    public void delete(JournalEntryDetail entity) {
+    public void delete(Payment entity) {
         repository.delete(entity);
     }
 

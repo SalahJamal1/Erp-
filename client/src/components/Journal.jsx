@@ -21,6 +21,12 @@ function Journal() {
       type: "",
       amount: "",
     },
+    {
+      id: "",
+      accountId: "",
+      type: "",
+      amount: "",
+    },
   ]);
   useEffect(() => {
     fetchAccounts();

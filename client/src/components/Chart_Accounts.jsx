@@ -12,7 +12,6 @@ function Chart_Accounts() {
   }, [fetchAccounts]);
 
   const account = [...accounts.filter((acc) => acc.level === 1)];
-  const x = accounts.filter((el) => el.accountId === null);
   return (
     <>
       <div className="text-center">
@@ -20,7 +19,7 @@ function Chart_Accounts() {
           Chart of Accounts
         </h1>
         <ul className="space-y-6">
-          {x.map((account) => (
+          {account.map((account) => (
             <Accounts key={account.id} account={account} />
           ))}
         </ul>

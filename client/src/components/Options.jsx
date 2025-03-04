@@ -7,9 +7,16 @@ import { FaCaretUp } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { setOption } from "../store/accountSlice";
 import useOption from "../hooks/useOption";
+import { deleteAccount } from "../services/apiErp";
+import useAccounts from "../hooks/useAccounts";
 function Options({ show }) {
   const { options } = useSelector((store) => store.chartAccount);
   const dispatch = useDispatch();
+  const { fetchAccounts } = useAccounts();
+  async function onClick() {
+    await deleteAccount(options.id);
+    fetchAccounts();
+  }
   useOption();
   if (show)
     return (
@@ -33,16 +40,15 @@ function Options({ show }) {
             <FaEdit className="text-xl" />
             edit
           </Link>
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1" onClick={onClick}>
             <RiDeleteBin7Fill className="text-xl" />
             delete
           </span>
-          <button
+
+          <IoIosCloseCircle
             onClick={() => dispatch(setOption(null))}
-            className="absolute top-0 right-0 -translate-x-2 translate-y-2 cursor-pointer"
-          >
-            <IoIosCloseCircle className="text-xl" />
-          </button>
+            className="text-xl absolute top-0 right-0 -translate-x-2 translate-y-2 cursor-pointer"
+          />
         </div>
       </div>
     );

@@ -1,7 +1,5 @@
 package com.app.erp.journalEntry;
 
-import com.app.erp.journalEntry.JournalEntry;
-
 import java.util.List;
 
 public interface JournalEntryService {

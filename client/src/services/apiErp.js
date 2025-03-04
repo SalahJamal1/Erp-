@@ -12,10 +12,15 @@ export async function getAccounts() {
 
 export async function createAccount(data) {
   const res = await api.post("accounts", data);
+
   return res;
 }
 export async function updateAccount(id, data) {
   const res = await api.patch(`accounts/${id}`, data);
+  return res;
+}
+export async function deleteAccount(id) {
+  const res = await api.delete(`accounts/${id}`);
   return res;
 }
 export async function getAccountById(id) {
@@ -29,8 +34,11 @@ export async function getAccountByAccountNumber(accountNumber) {
   return res.data;
 }
 export async function createJouranl(data) {
-  console.log(data);
   const res = await api.post(`/accounts/journal/journal-entry`, data);
-  console.log(res);
+  return res.data;
+}
+
+export async function getJouranls() {
+  const res = await api.get(`/accounts/journal/journal-entry`);
   return res.data;
 }

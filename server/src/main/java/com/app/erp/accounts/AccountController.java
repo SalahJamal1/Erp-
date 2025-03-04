@@ -28,6 +28,14 @@ public class AccountController {
         return service.findById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public Account deleteAccountById(@PathVariable Long id) {
+        Account account = service.findById(id);
+
+        service.delete(account);
+        return account;
+    }
+
     @PostMapping
     public Account createAccount(@RequestBody Account entity) {
         return service.save(entity);
