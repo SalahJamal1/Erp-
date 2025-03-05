@@ -38,7 +38,7 @@ function Journal() {
       border: "2px solid #034fb1",
       borderColor: "#034fb1",
       padding: "5px 10px",
-      width: "15rem",
+      width: "20rem",
       backgroundColor: "",
       color: "white !important",
     }),
@@ -57,7 +57,7 @@ function Journal() {
     }),
   };
   const accountOptions = accounts
-    .filter((el) => el.level > 2)
+    .filter((el) => el.level > 4)
     .map((acc) => ({
       label: `${acc.accountNumber} ${acc.accountName}`,
       value: acc.id,
@@ -148,7 +148,6 @@ function Journal() {
               <input
                 className="border-2 rounded-full py-2 border-[#034fb1] text-center w-[10rem]"
                 type="text"
-                placeholder="Debit"
                 required
                 onChange={(e) => onChange(i, "amount", e.target.value)}
               />

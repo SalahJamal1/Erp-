@@ -33,7 +33,7 @@ public class PaymentController {
         BigDecimal totalCredit = entity.getPaymentDetails().stream().map(PaymentDetail::getCredit)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         if (!totalDebit.equals(totalCredit)) {
-            throw new AppError("The total for debit is not equals total for credit ");
+            throw new AppError("The total for debit is not equals total for credit");
         } else return service.save(entity);
     }
 }
