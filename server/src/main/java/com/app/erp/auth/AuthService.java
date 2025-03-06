@@ -34,7 +34,6 @@ public class AuthService {
                 .lastName(register.getLastName())
                 .role(Role.ROLE_USER)
                 .build();
-        System.out.println(user);
         userRepository.save(user);
         String jwt = jwtService.generateToken(user);
         SetCookie(response, jwt);
